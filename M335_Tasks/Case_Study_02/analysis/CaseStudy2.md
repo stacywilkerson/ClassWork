@@ -1,23 +1,7 @@
----
-title: "Case Study 2: Wealth and Life Expectany"
-author: "Stacy Wilkerson"
-output: 
-  html_document:
-    code_folding: hide
-    keep_md: yes
-    theme: cerulean
----
+# Case Study 2: Wealth and Life Expectany
+Stacy Wilkerson  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(mosaic)
-library(pander)
-library(tidyverse)
-library(dplyr)
-library(ggplot2)
-library(data.table)
-library(gapminder)
-```
+
 
 ##Background
 
@@ -27,7 +11,8 @@ I learned that although ggplot is a very useful way to make visualizations, it h
 
 ###Plot 1
 
-```{r}
+
+```r
 ggplot(data = gapminder) + 
          geom_point(mapping = aes(x = lifeExp, y = gdpPercap, color = continent, size = pop/100000)) +
         facet_grid(. ~ year) +
@@ -38,15 +23,19 @@ ggplot(data = gapminder) +
         guides(size = guide_legend(title = "Population (100k)")) 
 ```
 
+![](CaseStudy2_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+
 ###Plot 2
 
-```{r}
+
+```r
 gapminder1 <- group_by(gapminder, country, year)
 gapminder1 <- mutate(gapminder1, meanGDP = weighted.mean(gdpPercap, na.rm = TRUE), meanPOP = weighted.mean(pop, na.rm = TRUE))
 gapminder2 <- filter(gapminder1, country != "Kuwait")
 ```
 
-```{r}
+
+```r
 ggplot(data = gapminder2) + 
          aes(x = year, y = gdpPercap, color = continent) +
          geom_point(mapping = aes(size = pop/100000)) +
@@ -57,6 +46,8 @@ ggplot(data = gapminder2) +
          xlab("Year") +
          ylab("GDP per capita")
 ```
+
+![](CaseStudy2_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 
 
