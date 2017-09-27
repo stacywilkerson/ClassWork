@@ -25,6 +25,10 @@ ggplot(data = gapminder) +
 
 ![](CaseStudy2_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
+```r
+#ggsave(file.path("M335_Tasks", "Case_Study_02", "analysis", "CS2plot1.png"), width = 15)
+```
+
 ###Plot 2
 
 
@@ -48,6 +52,10 @@ ggplot(data = gapminder2) +
 ```
 
 ![](CaseStudy2_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
+```r
+#ggsave(file.path("Case_Study_02", "analysis", "CS2plot2.png"), width = 15)
+```
 
 
 

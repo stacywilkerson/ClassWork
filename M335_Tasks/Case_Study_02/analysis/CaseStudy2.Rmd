@@ -36,6 +36,7 @@ ggplot(data = gapminder) +
         xlab("Life Expectancy") +
         ylab("GDP per capita") +
         guides(size = guide_legend(title = "Population (100k)")) 
+ggsave(file.path("M335_Tasks", "Case_Study_02", "analysis", "CS2plot1.png"), width = 15)
 ```
 
 ###Plot 2
@@ -56,6 +57,7 @@ ggplot(data = gapminder2) +
          theme_bw() +
          xlab("Year") +
          ylab("GDP per capita")
+ggsave(file.path("M335_Tasks", "Case_Study_02", "analysis", "CS2plot2.png"), width = 15)
 ```
 
 
