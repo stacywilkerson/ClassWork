@@ -6,6 +6,7 @@ output:
     code_folding: hide
     keep_md: yes
     theme: cerulean
+    fig_width: 10
 ---
 
 ```{r setup, include=FALSE}
