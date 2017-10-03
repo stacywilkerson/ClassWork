@@ -23,7 +23,14 @@ all.equal(Dart.csv, Dart.xlsx, check.attributes = FALSE)
 all.equal(Dart.dta, Dart.xlsx, check.attributes = FALSE)
 all.equal(Dart.sav, Dart.xlsx, check.attributes = FALSE)
 
-
+Dart.rds %>%
+  group_by(variable, value) %>%
+  summarise(mean(value)) %>% 
+  ggplot(aes(x = variable, y = value)) +
+     geom_boxplot() +
+     geom_jitter() +
+     theme_bw() +
+     ggsave(file.path("Task7plot.png"), width = 15)
 
 
 
