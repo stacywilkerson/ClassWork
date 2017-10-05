@@ -141,6 +141,7 @@ $(document).ready(function () {
 
 <div id="tidy-data" class="section level3">
 <h3>Tidy Data</h3>
+<p>This is code that tidies up the rds data so that we can use this data.</p>
 <pre class="r"><code>Dart.rds &lt;- read_rds(gzcon(url(&quot;https://github.com/byuistats/data/raw/master/Dart_Expert_Dow_6month_anova/Dart_Expert_Dow_6month_anova.RDS&quot;)))
 
 tidydata &lt;- Dart.rds %&gt;%
@@ -152,6 +153,7 @@ saveRDS(tidydata, &quot;tidydata.rds&quot;)</code></pre>
 </div>
 <div id="plot" class="section level3">
 <h3>Plot</h3>
+<p>Below is a boxplot that looks at six-month returns by year. There is a boxplot for each year, so we can look at the average and spread of the changing return values as the years go by.</p>
 <pre class="r"><code>tidydata %&gt;% 
   ggplot() +
   geom_boxplot(mapping = aes(x = year_end, y = value)) + 
@@ -160,6 +162,7 @@ saveRDS(tidydata, &quot;tidydata.rds&quot;)</code></pre>
 </div>
 <div id="table" class="section level3">
 <h3>Table</h3>
+<p>Below is a table that shows the end months on the rows and the end years in the columns. So each cell has the return value based on the end month and year that correspond to the value.</p>
 <pre class="r"><code>DJIAdata &lt;- tidydata %&gt;%
   filter(variable == &quot;DJIA&quot;) %&gt;%
   select(month_end, year_end, value) %&gt;%

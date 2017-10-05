@@ -5,6 +5,8 @@ Stacy Wilkerson
 
 ###Tidy Data
 
+This is code that tidies up the rds data so that we can use this data.
+
 
 ```r
 Dart.rds <- read_rds(gzcon(url("https://github.com/byuistats/data/raw/master/Dart_Expert_Dow_6month_anova/Dart_Expert_Dow_6month_anova.RDS")))
@@ -19,6 +21,8 @@ saveRDS(tidydata, "tidydata.rds")
 
 ###Plot
 
+Below is a boxplot that looks at six-month returns by year. There is a boxplot for each year, so we can look at the average and spread of the changing return values as the years go by. 
+
 
 ```r
 tidydata %>% 
@@ -30,6 +34,8 @@ tidydata %>%
 ![](Task8_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ###Table
+
+Below is a table that shows the end months on the rows and the end years in the columns. So each cell has the return value based on the end month and year that correspond to the value. 
 
 
 ```r
