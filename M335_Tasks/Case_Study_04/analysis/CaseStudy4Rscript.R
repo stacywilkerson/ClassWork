@@ -36,7 +36,8 @@ heightdata.sav <- read_sav("http://www.ssc.wisc.edu/nsfh/wave3/NSFH3%20Apr%20200
 heightdatalong.xlsx <- heightdata.xlsx %>%
   gather(`1800`:`2011`, key = "year", value = "height") %>%
   na.omit %>%
-  rename(c("year" = "year_decade"))
+  mutate(height = height / 2.54) %>%
+  rename(c("year" = "year_decade", "Continent, Region, Country" = "Country"))
 #saving 
 write.xlsx(heightdatalong.xlsx, "heightdatalong.xlsx")
 
