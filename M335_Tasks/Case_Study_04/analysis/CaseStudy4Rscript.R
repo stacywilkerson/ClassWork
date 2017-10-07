@@ -1,16 +1,5 @@
----
-title: "Case Study 4: I can clean your data"
-author: "Stacy Wilkerson"
-output: 
-  html_document:
-    code_folding: hide
-    keep_md: yes
-    theme: cerulean
----
+#Case Study 4 R Script
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(mosaic)
 library(tidyverse)
 library(dplyr)
 library(tidyr)
@@ -21,9 +10,7 @@ library(readr)
 library(readxl)
 library(foreign)
 library(plyr)
-```
 
-```{r, include=FALSE}
 #reading in 6 data sets
 #Worldwide estimates
 download.file("https://byuistats.github.io/M335/data/heights/Height.xlsx", "Heightdata.xlsx")
@@ -44,18 +31,15 @@ heightdata.csv <- read_csv("https://github.com/hadley/r4ds/raw/master/data/heigh
 
 #National Survey (us20)
 heightdata.sav <- read_sav("http://www.ssc.wisc.edu/nsfh/wave3/NSFH3%20Apr%202005%20release/main05022005.sav")
-```
 
-```{r}
 #first data set
 heightdatalong.xlsx <- heightdata.xlsx %>%
   gather(`1800`:`2011`, key = "year", value = "height") %>%
   na.omit %>%
   rename(c("year" = "year_decade"))
-#saving in R script
-```
+#saving 
+write.xlsx(heightdatalong.xlsx, "heightdatalong.xlsx")
 
-```{r}
 #merge other 5 data sets 
 
 #tidy sav data
@@ -66,13 +50,12 @@ us20 <- heightdata.sav %>%
          study = "NATS") %>%
   rename(c("RT216I" = "height_in", "DOBY" = "birth_year")) %>%
   mutate(birth_year = (birth_century - 1) * 100 + birth_year)
-  
+
 #tidy dbf data
 g18 <- heightdata.dbf %>%
   select(GEBJ, CMETER) %>%
   mutate(birth_century = 18, study = "GermanH", height_in = CMETER / 2.54) %>% 
   rename(c("GEBJ" = "birth_year", "CMETER" = "height_cm"))
-
 #tidy csv data
 w20 <- heightdata.csv %>% 
   select(height) %>%
@@ -94,23 +77,8 @@ b19 <- heightdata2.dta %>%
 #use rbind
 alldata <- bind_rows(b19, g18, g19, w20, us20)
 
-#saving in R scipt
-```
-
-##PLots
-
-```{r}
-#xlsx plot
-heightdatalong.xlsx %>%
-  ggplot(aes(x = ))
-```
-
-
-
-```{r}
-#5 data sets plot
-#alldata %>%
-```
+#saving 
+saveRDS(alldata, "alldata.rds")
 
 
 
