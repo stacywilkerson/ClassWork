@@ -27,6 +27,7 @@ library(ggrepel)
 ```
 
 ```{r}
+#Note: I spent about 9 hours on this Case Study
 heightdatalong.xlsx <- read_xlsx("./heightdatalong.xlsx")
 alldata.rds <- read_rds("./alldata.rds")
 ```
