@@ -1,0 +1,89 @@
+---
+title: "Case Study 5: The collapse of construction in Idaho"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean
+    fig_width: 12
+    fig_height: 8
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(openxlsx)
+library(stringr)
+library(haven)
+library(readr)
+library(readxl)
+library(foreign)
+library(plyr)
+library(ggrepel)
+library(devtools)
+```
+
+```{r, eval}
+load("./restaurants.rda")
+load("./permits.rda")
+load("./climate_zone_fips.rda")
+load("./buildings0809.rda")
+```
+
+```{r}
+not_restaurants <- str_to_lower(c("development","Food preperation center", "Food Services center","bakery","Grocery","conceession","Cafeteria", "lunchroom","school","facility"," hall "))
+standalone_retail <- str_to_lower(c("Wine","Spirits","Liquor","Convenience","drugstore","Flying J", "Rite Aid ","walgreens ","Love's Travel "))
+full_service_type <- str_to_lower(c("Ristorante","mexican","pizza ","steakhouse"," grill ","buffet","tavern"," bar ","waffle","italian","steak house"))
+quick_service_type <- str_to_lower(c("coffee"," java "," Donut ","Doughnut"," burger ","Ice Cream ","custard ","sandwich ","fast food "," bagel "))
+quick_service_names <- str_to_lower(restaurants$Restaurant[restaurants$Type %in% c("coffee","Ice Cream","Fast Food")])
+full_service_names <- str_to_lower(restaurants$Restaurant[restaurants$Type %in% c("Pizza","Casual Dining","Fast Casual")])
+#joining data
+joindata <- left_join(buildings0809, climate_zone_fips, by = c("FIPS.state", "FIPS.county"))
+#sum(is.na(joindata))
+#nrow(joindata)
+```
+
+
+
+```{r}
+fooddata <- joindata %>%
+  filter(Type == "Food_Beverage_Service") %>%
+  mutate(
+    spt = str_trim(str_to_lower(.$ProjectTitle)),
+    build_type = case_when(
+      str_detect( spt, paste( c( not_restaurants, standalone_retail, "retail", "club" ), collapse = "|" ) ) ~ "Commercial",
+      str_detect( spt, paste( full_service_names, collapse = "|" ) ) ~ "Full Service Restaurants",
+      str_detect( spt, paste( quick_service_names, collapse = "|" ) ) ~ "Quick Service Restaurants",
+      !(str_detect(spt, paste(c( quick_service_names, full_service_names), collapse = "|"))) & (SqFt >= 4000) ~ "Full Service Restaurants",
+      !(str_detect(spt, paste(c( quick_service_names, full_service_names), collapse = "|"))) & (SqFt < 4000) ~ "Quick Service Restaurants", TRUE  ~ "Unknown"))
+```
+
+
+
+```{r, eval=FALSE}
+fooddata %>% 
+  ggplot(aes(x = Type, y = SqFt, fill = Year)) + 
+  geom_point() 
+```
+
+```{r, eval=FALSE}
+fooddata %>% 
+  group_by(build_type, County.y, Year) %>% 
+  summarize(value = sum(Value1000), pop = min(Pop100)) %>%
+  complete(build_type, nesting(County.y, Year)) %>%
+  ggplot(aes(x = County.y, y = value, fill = Year)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  facet_wrap(~build_type, scales = "free_y") + theme_bw()
+```
+
+
+
+
+
+
+
+
+
