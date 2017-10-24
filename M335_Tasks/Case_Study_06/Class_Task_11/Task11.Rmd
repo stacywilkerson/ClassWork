@@ -34,6 +34,7 @@ tidydata <- Dart.rds %>%
   separate(end, into = c("month_end", "year_end"), sep = -5) %>%
   group_by(month_end) %>%
   na.omit 
+  #fct_recode()
 #saveRDS(tidydata, "tidydata.rds")
 tidydata$month_end <- factor(tidydata$month_end, levels = month.name)
 ```
