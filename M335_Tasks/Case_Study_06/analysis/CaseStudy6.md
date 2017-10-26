@@ -52,11 +52,11 @@ ggplot() +
   geom_hline(yintercept = 28.25118, color = "red") +
   theme_bw() +
   theme( plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(y = "Count Between References", x = "Book Names", title = "Counts Between Savior References Based on Books in the Book of Mormon with the Averge Count Overall")
+  labs(y = "Word Count Between References", x = "Book Names", title = "Word Counts Between Savior References Based on Books in the Book of Mormon with the Averge Count Overall")
 ```
 
 ![](CaseStudy6_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
-This graphic shows the counts between Savior references based on books in the Book of Mormon with the average count overall signified as the red horizontal line. We can see the distribution of the lengths between references based on the different books and it looks like 4 Nephi has most of the smallest lengths between references. 3 Nephi looks to have one of the longest word counts between reference.   
+This graphic shows the counts between Savior references based on books in the Book of Mormon with the average count overall (28.25) signified as the red horizontal line. We can see the distribution of the lengths between references based on the different books and it looks like 4 Nephi has most of the smallest lengths between references. 3 Nephi looks to have one of the longest word counts between reference.   
 
 

@@ -30,22 +30,28 @@ dailymaxtemp1 %>%
   theme_bw() +
   theme(legend.position="none", plot.title = element_text(hjust = 0.5))
 #ggsave("plot1.png", device = "png", width = 9, height = 6)
+rxe %>%
+  filter(., month == "Jun") %>%
+  group_by(week_day) %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = week_day, y = tmpf))
 
 #Plot 2
 dailymaxtemp2 <- rxe %>%
   filter(hour == 14) %>%
+  filter(month == "Jun") %>%
   group_by(week_day) %>%
-  summarise(maxT = max( tmpf, na.rm = TRUE ))
+  summarise(maxT = max(tmpf, na.rm = TRUE))
 
 dailymaxtemp2 %>%
   ggplot() +
-  geom_point(mapping = aes(x = week_day, y = maxT, color = 73 < maxT)) +
+  geom_point(mapping = aes(x = week_day, y = maxT, color = 71.5 < maxT)) +
   scale_color_manual( values = c("black", "red")) +
   labs(
     title = "Highest Max Temperature Verse Day of Week in June at 2pm", 
     x = "Day of the Week", y = "Temperature") +
   theme_bw() +
   theme(legend.position="none", plot.title = element_text(hjust = 0.5))
-#ggsave( "plot2.png", device = "png", width = 9, height = 6)
+ggsave( "plot2.png", device = "png", width = 9, height = 6)
 
 

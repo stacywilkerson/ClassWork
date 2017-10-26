@@ -58,21 +58,27 @@ meaningful_data <-
   unnest( scripture_text ) %>%
   {mutate(., count = stri_count_words( .$scripture_text )
   )}
+
+meaningful_data2 <- 
+  meaningful_data %>%
+  group_by(book_title) %>%
+  mutate(meanofbooks = mean(count))
 ```
 
 
 ###Plot
 
 ```{r}
-meaningful_data %>%
 ggplot() +
-  geom_point(mapping = aes(x = book_title, y = count)) +
+  geom_jitter(data = meaningful_data, mapping = aes(x = book_title, y = count), color = "black", alpha = 0.25) +
   geom_hline(yintercept = 28.25118, color = "red") +
+  geom_point(data = meaningful_data2, mapping = aes(y = meanofbooks, x = book_title), color = "red") +
   theme_bw() +
-  theme( plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(y = "Count Between References", x = "Book Names", title = "Counts Between Savior References Based on Books in the Book of Mormon with the Averge Count Overall")
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(y = "Word Count Between References", x = "Book Names", title = "Word Counts Between Savior References Based on Books in the Book of Mormon with the Averge Count Overall") +
+  scale_y_continuous()
 ```
 
-This graphic shows the counts between Savior references based on books in the Book of Mormon with the average count overall signified as the red horizontal line. We can see the distribution of the lengths between references based on the different books and it looks like 4 Nephi has most of the smallest lengths between references. 3 Nephi looks to have one of the longest word counts between reference.   
+This graphic shows the counts between Savior references based on books in the Book of Mormon with the average count overall (28.25) signified as the red horizontal line. We can see the distribution of the lengths between references based on the different books and it looks like 4 Nephi has most of the smallest lengths between references. 3 Nephi looks to have one of the longest word counts between reference.   
 
 
