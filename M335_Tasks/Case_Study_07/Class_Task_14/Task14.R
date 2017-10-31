@@ -38,3 +38,22 @@ data %>%
        title = "Relationship Between Sales and Temperature By Hour of the Day")
 
 ggsave( "task14plot.png", device = "png", width = 9, height = 6)
+
+
+
+#Plotly Graphic
+library(plotly)
+#data$amount <- data.matrix(data$amount, rownames.force = NA)
+#plot_ly(z = ~data.matrix(data)) %>% add_surface()
+
+plot_ly(x = data$hour, y = data$tmpf, z = data.matrix(data$amount)) %>% 
+  add_surface()
+
+plot_ly(data, x = ~hour, y = ~tmpf, z = ~amount,
+  marker = list(color = ~amount, 
+  colorscale = c('#FFE1A1', '#683531'), 
+  showscale = TRUE)) %>%
+  add_markers()
+
+
+

@@ -1,0 +1,116 @@
+---
+title: "Case Study 7: It's about time"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean
+    fig_width: 10
+    fig_height: 6
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyr)
+library(tidyverse)
+library(forcats)
+library(rio)
+library(downloader)
+library(readr)
+library(riem)
+library(lubridate)
+library(magrittr)
+library(forcats)
+library(mosaic)
+library(pander)
+```
+
+##Background
+
+We have transaction data for a few businesses that have been in operation for three months (April 20, 2017 to July 20, 2017). Each of these business are seeking an investment loan to expand their businesses. We we look at daily, weekly, and monthly gross revenue summaries and comparisons. 
+
+```{r, message=FALSE, warning=FALSE}
+#IBC <- read_csv("https://byuistats.github.io/M335/data/sales.csv")
+#write_csv(IBC, path = "./IBC_sales.csv")
+IBC <- read_csv("./IBC_sales.csv")
+
+IBC <- IBC %>%
+  mutate(MTZ = with_tz(.$Time, tzone = "America/Denver")) %>%
+  filter(Name != "Missing") %>% #removed 2 missing names
+  {mutate(., Month = month(.$MTZ, label = TRUE, abbr = FALSE), Day = day(.$MTZ), Hour = hour(.$MTZ), Weekday = wday(.$MTZ, label = TRUE))}
+```
+
+##Monthly Gross
+
+```{r}
+IBCmonth <- IBC %>%
+  group_by(Month, Name) %>%
+  mutate(Gross = sum(Amount))
+ggplot() +
+  geom_point(data = IBCmonth, mapping = aes(x = Month, y = Gross)) +
+  facet_grid(.~Name) + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Gross Revenue Based on Months")
+pander(favstats(Gross~Name, data = IBCmonth)[1:9])
+```
+
+```{r, eval = FALSE}
+#Idea for Month (doesn't work)
+IBCdata <- IBC %>%
+  group_by(Month, Name) %>%
+  mutate(Gross = sum(Amount))
+ggplot() +
+  geom_area(data = IBCmonth, mapping = aes(x = Month, y = Gross, fill = Name), stat = "identity", position = "stacked") 
+```
+
+##Weekly Gross
+
+```{r}
+IBCweek <- IBC %>%
+  group_by(Weekday, Name) %>%
+  mutate(Gross = sum(Amount))
+ggplot() +
+  geom_point(data = IBCweek, mapping = aes(x = Weekday, y = Gross)) +
+  facet_grid(.~Name) + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 55, hjust = 1)) +
+  labs(title = "Gross Revenue Based on Week")
+pander(favstats(Gross~Name, data = IBCweek)[1:9])
+```
+
+##Daily Gross
+
+```{r}
+IBCday <- IBC %>%
+  group_by(Day, Name) %>%
+  mutate(Gross = sum(Amount))
+ggplot() +
+  geom_point(data = IBCday, mapping = aes(x = Day, y = Gross)) +
+  facet_grid(.~Name) + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 0, hjust = 1)) +
+  labs(title = "Gross Revenue Based on Day of Month")
+pander(favstats(Gross~Name, data = IBCday)[1:9])
+```
+
+##Hours of Operation (Foot Traffic)
+
+```{r}
+IBChour <- IBC %>%
+  filter(Amount < 250, Hour > 7, Weekday != "Sun") %>%
+  group_by(Hour, Name, Weekday) %>%
+  mutate(Gross = sum(Amount)) 
+ggplot() +
+  geom_point(data = IBChour, mapping = aes(x = Hour, y = Gross)) +
+  facet_grid(Name~Weekday) + 
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 0, hjust = 1)) +
+  labs(title = "Gross Revenue Based on Hour of Weekday")
+pander(favstats(Gross~Name, data = IBChour)[1:9])
+```
+
+##Recommendation
+
+The best recomendation to give an invest ment loan to would be Hotdiggity or LeBelle.  
