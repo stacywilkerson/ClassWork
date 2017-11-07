@@ -5,7 +5,7 @@ output:
   html_document:
     code_folding: hide
     keep_md: yes
-    theme: cerulean
+    theme: cerulean  
 ---
 
 ```{r setup, include=FALSE}
