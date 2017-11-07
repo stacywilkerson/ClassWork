@@ -1,0 +1,91 @@
+---
+title: "Case Study 8: Interacting with time"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyr)
+library(tidyverse)
+library(forcats)
+library(rio)
+library(downloader)
+library(readr)
+library(riem)
+library(lubridate)
+library(magrittr)
+library(tidyquant)
+library(quantmod)
+library(magrittr)
+library(forcats)
+library(RColorBrewer)
+library(dygraphs)
+library(timetk)
+```
+
+##Background 
+
+Your data science income has ballooned, and you need to find somewhere to invest $25,000 that you have saved over the last year. You have a savvy investment friend that is kind enough to tell you ten stocks he has been watching during the last year. You will need to visualize the last five years performance to help in the in the conversation with your friend.
+
+##Graphics
+
+```{r message=FALSE, warning=FALSE}
+tickers_today <- c("CXW", "F", "GM", "JCP", "KR", "WDC", "NKE","T", "WDAY", "WFC", "WMT")
+stockprices <-
+  tq_get(tickers_today, get = "stock.prices", complete_cases = TRUE,
+    from = "2012-10-01")
+stocks <- stockprices %>%
+  select(date, symbol, adjusted) %>%
+  spread(key = symbol, value = adjusted) %>%
+  tk_xts(.)
+dygraph(stocks, main = "Stock Adjusted Based on Year", ylab = "Adjusted") %>%
+  dyHighlight(highlightCircleSize = 5, 
+      highlightSeriesBackgroundAlpha = 0.2,
+      hideOnMouseOut = FALSE) %>%
+     dyOptions(colors = brewer.pal(10, "Paired")[c(2, 5, 6, 8, 7, 4, 1, 10, 3, 9, 12)])
+```
+
+
+
+```{r message=FALSE, warning=FALSE}
+adjusted <- stockprices %>%
+  select(date, symbol, adjusted) %>%
+  spread(key = symbol, value = adjusted) %>%
+  tk_xts(.)
+volume <- stockprices %>%
+  select(date, symbol, volume) %>%
+  spread(key = symbol, value = volume) %>%
+  tk_xts(.)
+
+#tickers_today <- c("CXW", "F", "GM", "JCP", "KR", "WDC", "NKE","T", "WDAY", "WFC", "WMT")
+#getSymbols(tickers_today)
+#stock <- do.call(merge, lapply(tickers_today, function(x) Cl(get(x))))
+dateWindow <- c("2012-10-01", "2013-10-01")
+
+dygraph(volume, main = "Volume", group = "stock") %>%
+  dyRangeSelector(dateWindow = dateWindow)
+
+dygraph(adjusted, main = "Adjusted", group = "stock") %>%
+  dyRangeSelector(dateWindow = dateWindow)
+```
+
+
+
+```{r}
+stockprices %>%
+  group_by(symbol) %>%
+    ggplot(aes(x = date, y = adjusted)) +
+    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+    labs(title = "Candlestick Chart", 
+         y = "Closing Price", x = "") + 
+  facet_wrap(~symbol) +
+    theme_tq()
+```
+
+
+

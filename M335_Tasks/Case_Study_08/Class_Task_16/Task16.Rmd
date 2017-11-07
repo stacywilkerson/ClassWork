@@ -1,0 +1,40 @@
+---
+title: "Task 16: The US Grocer (KR)"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyquant)
+library(quantmod)
+library(magrittr)
+library(forcats)
+library(dygraphs)
+library(timetk)
+```
+
+```{r message=FALSE, warning=FALSE}
+KRprices <-
+  tq_get("KR", get = "stock.prices", complete_cases = TRUE,
+    from = "2012-10-01", to = "2017-10-01") %>%
+    tk_xts()
+dateWindow <- c("2012-10-01", "2013-10-01")
+dygraph(KRprices, main = "Kroger", xlab = "Time", ylab = "Adjusted Stock") %>%
+  dyRangeSelector(dateWindow = dateWindow) %>% 
+  dyAnnotation("2012-10-16", text = "A", tooltip = "Kroger stock rose") %>%
+  dyAnnotation("2017-06-16", text = "B", tooltip = "Kroger stock was at the highest price for that past 5 years") %>% 
+  dyAnnotation("2017-07-03", text = "C", tooltip = "Koger stock dropped dramatically in price")
+```
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+---
+title: "Task 15: My investment is better than yours"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyr)
+library(tidyverse)
+library(forcats)
+library(rio)
+library(downloader)
+library(readr)
+library(riem)
+library(lubridate)
+library(magrittr)
+# Need to update R use installr package and dont run through it in RStudio
+#install.packages("tidyquant")
+#install.packages("quantmod")
+library(tidyquant)
+library(quantmod)
+library(magrittr)
+library(forcats)
+```
+
+
+```{r}
+#For this task I used code from Josh Bowers.
+my_tickers <- c( "TM", "NFLX", "BA" )
+friend_tickers <- c( "AMZN", "DIS", "FB" )
+
+prices <-
+  tq_get(
+    c( my_tickers, friend_tickers ),
+    get = "stock.prices",
+    complete_cases = TRUE,
+    from = "2012-10-01",
+    to = "2017-10-01"
+  )
+
+me <-
+  prices %>%
+  filter(symbol == my_tickers)
+
+
+friend <-
+  prices %>%
+  filter(symbol == friend_tickers )
+
+
+me %>%
+  ggplot( aes( x = date, y = adjusted ) ) +
+  geom_line() +
+  facet_wrap( ~ symbol ) +
+  theme_bw() +
+  theme( axis.text.x = element_text(angle = 45, hjust = 1) )
+
+friend %>%
+  ggplot( aes( x = date, y = adjusted ) ) +
+  geom_line() +
+  facet_wrap( ~ symbol ) +
+  theme_bw() +
+  theme( axis.text.x = element_text(angle = 45, hjust = 1) )
+
+prices %>%
+  group_by(symbol) %>%
+  ggplot( aes( x = date, y = adjusted ) ) +
+  geom_boxplot() +
+  facet_wrap( ~ symbol, scales="free" ) +
+  theme_bw()
+```
+
+
+
+
+
+
+
+
