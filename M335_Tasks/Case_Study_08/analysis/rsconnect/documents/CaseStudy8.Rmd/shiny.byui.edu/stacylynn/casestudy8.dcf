@@ -1,0 +1,12 @@
+name: casestudy8
+title: CaseStudy8
+username: stacylynn
+account: stacylynn
+server: shiny.byui.edu
+hostUrl: http://shiny.byui.edu:3939/__api__
+appId: 90
+bundleId: 147
+url: http://shiny.byui.edu:3939/content/90/
+when: 1510090628.51602
+asMultiple: FALSE
+asStatic: TRUE

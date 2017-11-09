@@ -34,7 +34,7 @@ Your data science income has ballooned, and you need to find somewhere to invest
 
 ##Graphics
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig_width = 12}
 tickers_today <- c("CXW", "F", "GM", "JCP", "KR", "WDC", "NKE","T", "WDAY", "WFC", "WMT")
 stockprices <-
   tq_get(tickers_today, get = "stock.prices", complete_cases = TRUE,

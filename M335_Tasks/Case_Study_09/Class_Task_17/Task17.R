@@ -20,7 +20,7 @@ library(readr)
 #str_split it takes every thing and strings it together by ""
 extractchar <- function (text, start, by, to)
 {
-read_lines("randomletters.txt") %>%
+read_lines(text) %>%
   gsub("[^. ]+$", "", .) %>%
   str_split("") %>%
   unlist() %>%
@@ -36,7 +36,7 @@ extractchar( text, start = 1700, by = 1700, to = 57800)
 #them to be letters so that it will write the result.
 extractnumbers <- function(text)
 {
-read_lines("randomletters_wnumbers.txt") %>%
+read_lines(text) %>%
   str_extract_all( "[0-9]+" ) %>%
   unlist() %>%
   as.numeric() %>%
@@ -47,14 +47,14 @@ text2 <- "./randomletters_wnumbers.txt"
 extractnumbers(text2)
 # Result: "expertsoftenpossessmoredatathanjudgment"
 extractvouleseq <- function(text) {
-read_lines("randomletters.txt") %>%
+read_lines(text) %>%
   gsub("[\\. ]+$", "", .) %>%
   str_extract_all( "[aeiou]+" ) %>%
   unlist() %>%
   .[which.max(nchar(.))]
 }
 text3 <- "./data/randomLetters.txt"
-extractnumbers(text3)
+extractvouleseq(text3)
 # Result: "oaaoooo"
 
 
