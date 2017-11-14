@@ -1,0 +1,12 @@
+name: task18
+title: Task18
+username: stacylynn
+account: stacylynn
+server: shiny.byui.edu
+hostUrl: http://shiny.byui.edu:3939/__api__
+appId: 99
+bundleId: 166
+url: http://shiny.byui.edu:3939/content/99/
+when: 1510263087.59646
+asMultiple: FALSE
+asStatic: TRUE

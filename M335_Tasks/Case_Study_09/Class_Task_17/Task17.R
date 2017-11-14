@@ -57,4 +57,3 @@ text3 <- "./data/randomLetters.txt"
 extractvouleseq(text3)
 # Result: "oaaoooo"
 
-
