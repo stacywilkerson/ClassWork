@@ -6,6 +6,7 @@ library(rvest)
 library(stringr)
 library(readr)
 
+#Registration for Fall 2016 
 waitlist_raw <- read_csv("WaitListData.csv", col_names = TRUE, col_types = cols(
   X1 = col_character(),
   X2 = col_character(),

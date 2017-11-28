@@ -1,0 +1,42 @@
+---
+title: "Case Study 10: Building the past"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyr)
+library(tidyverse)
+library(forcats)
+library(rio)
+library(downloader)
+library(readr)
+library(riem)
+library(lubridate)
+library(magrittr)
+library(tidyquant)
+library(quantmod)
+library(magrittr)
+library(forcats)
+library(RColorBrewer)
+library(dygraphs)
+library(timetk)
+```
+
+##Background 
+
+
+
+
+
+
+
+
+
+
+
