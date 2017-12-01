@@ -1,0 +1,13 @@
+---
+title: "Task 22: Introduction to Big Data"
+author: "Stacy Wilkerson"
+output: 
+  html_document:
+    code_folding: hide
+    keep_md: yes
+    theme: cerulean  
+---
+
+[Programming with Big Data in R: Scaling Analytics from One to Thousands of Nodes](http://www.sciencedirect.com.byui.idm.oclc.org/science/article/pii/S221457961630065X?_rdoc=1&_fmt=high&_origin=gateway&_docanchor=&md5=b8429449ccfc9c30159a5f9aeaa92ffb&ccp=y)
+
+This article talks about how we can use big data and manage it in R. This article actually presents a tutorial on how to do this. It explains different packages in R that help with the development of data analysis algorithms. This article also gives us R code that helps with the analysis of big data and it gives examples and graphics. This article also helps us to speed up computations in R. 

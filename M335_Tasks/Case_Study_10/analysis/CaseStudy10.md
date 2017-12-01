@@ -1,33 +1,7 @@
----
-title: "Case Study 10: Building the past"
-author: "Stacy Wilkerson"
-output: 
-  html_document:
-    code_folding: hide
-    keep_md: yes
-    theme: cerulean  
----
+# Case Study 10: Building the past
+Stacy Wilkerson  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(forcats)
-library(rio)
-library(riem)
-library(lubridate)
-library(magrittr)
-library(tidyquant)
-library(quantmod)
-library(magrittr)
-library(stringr)
-library(sf)
-library(maps)
-library(buildings)
-library(ggrepel)
-library(geofacet)
-library(viridis)
-library(USAboundaries)
-```
+
 
 ##Background 
 
@@ -37,7 +11,8 @@ Remember the big story is the collapse of new building permits at the initial st
 
 ##Graphics
 
-```{r}
+
+```r
 states <- us_states(resolution = "high")
 counties <- us_counties()
 permitdata <-
@@ -55,9 +30,12 @@ singlefamily %>%
   labs(x = "Year", y = "Value", title = "Number of Permits Overall the US")
 ```
 
+![](CaseStudy10_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
 
-```{r}
+
+
+```r
 #I am from Missouri!
 
 singlefamily <-
@@ -80,5 +58,7 @@ MOsinglefam %>%
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     labs(title = "Missouri Permits")
 ```
+
+![](CaseStudy10_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 
