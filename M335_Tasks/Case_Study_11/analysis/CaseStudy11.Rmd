@@ -30,6 +30,7 @@ library(USAboundaries)
 library(leaflet)
 library(sp)
 library(htmltools)
+library(rgdal)
 ```
 
 
@@ -47,7 +48,9 @@ states <- us_states(resolution = "high")
 counties <- us_counties()
 permitdata <-
   full_join(permits, counties, by = c("countyname" = "countyfp"))
-permitdata2 <- left_join(permitdata, states, by = c("StateAbbr" = "stusps"))
+singlefamily <- permitdata %>%
+  filter(variable == "Single Family")
+
 singlefamily <- permitdata %>%
   filter(variable == "Single Family")
 
@@ -64,10 +67,50 @@ leaflet(data = states) %>%
   addTiles() %>%
   addPolygons(fillColor = topo.colors(10, alpha = NULL), 
             stroke = FALSE) %>%
+  addMarkers(data = permitdata, icon = greenLeafIcon)
+```
+
+```{r}
+leaflet(data = permitdata) %>% 
+  addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), 
+            stroke = FALSE) %>%
   addMarkers(data = singlefamily, icon = greenLeafIcon)
+
+
+states <- us_states(resolution = "high")
+counties <- us_counties()
+#counties2 <- 
+  #st_join(states, counties, join = st_intersects, left = TRUE)
+
+leaflet(data = states) %>% 
+  addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), 
+            stroke = FALSE) %>%
+  addMarkers(data = counties)
+
+mapStates = map("state", fill = TRUE, plot = FALSE)
+leaflet(data = mapStates) %>% addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+
 ```
 
 
+
+
+
+```{r}
+counties <- us_counties()
+states <-  us_states()
+
+permit <- 
+  permits %>% 
+  filter(variable == "Single Family", year == 2006 |year == 2007 | year == 2008 | year == 2009 | year == 2010, StateAbbr != "AK", StateAbbr != "HI") %>%
+  mutate(statefp = str_pad( state, width = 2, side = "left", pad = 0 ),
+         countyfp = str_pad( county, width = 3, pad = 0 ))
+
+
+```
 
 
 

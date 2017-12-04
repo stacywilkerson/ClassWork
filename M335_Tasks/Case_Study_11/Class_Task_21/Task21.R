@@ -75,3 +75,17 @@ leaflet(data = states) %>%
   addCircleMarkers(data = cities, radius = ~cities$population/800000, 
              label = ~htmlEscape(cities$name_2010))
 
+
+
+
+
+
+
+#Lat and Lon 
+leaflet(data = states) %>% 
+  addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), 
+              stroke = FALSE) %>%
+  addMarkers(data = cities, ~lon, ~lat, icon = greenLeafIcon, 
+             label = ~htmlEscape(cities$name_2010))
+
