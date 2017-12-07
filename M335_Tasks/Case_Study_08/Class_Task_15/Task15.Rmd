@@ -29,7 +29,7 @@ library(forcats)
 ```
 
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 #For this task I used code from Josh Bowers.
 my_tickers <- c( "TM", "NFLX", "BA" )
 friend_tickers <- c( "AMZN", "DIS", "FB" )
@@ -58,14 +58,16 @@ me %>%
   geom_line() +
   facet_wrap( ~ symbol ) +
   theme_bw() +
-  theme( axis.text.x = element_text(angle = 45, hjust = 1) )
+  theme( axis.text.x = element_text(angle = 45, hjust = 1) ) +
+  labs(title = "My Stocks Price Preformace")
 
 friend %>%
   ggplot( aes( x = date, y = adjusted ) ) +
   geom_line() +
   facet_wrap( ~ symbol ) +
   theme_bw() +
-  theme( axis.text.x = element_text(angle = 45, hjust = 1) )
+  theme( axis.text.x = element_text(angle = 45, hjust = 1) ) +
+  labs(title = "My Friends Stocks Price Performance")
 
 prices %>%
   group_by(symbol) %>%
@@ -75,7 +77,7 @@ prices %>%
   theme_bw()
 ```
 
-
+Looking at the different stocks it looks like my friend has the great price perforce in their Amazon stocks, but their other two stocks are not as good as Amazon. Comparatively my stocks are all doing fairly well and they appear to overall be better than my friends stocks. We can see from the boxplot which is used to visualize all of these stocks together, that Amazon is the best stock overall. The boxplot also helps us to see the distribution of the data. 
 
 
 

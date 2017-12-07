@@ -31,7 +31,7 @@ dygraph(KRprices, main = "Kroger", xlab = "Time", ylab = "Adjusted Stock") %>%
   dyAnnotation("2017-07-03", text = "C", tooltip = "Koger stock dropped dramatically in price")
 ```
 
-
+In this interactive graphic we can see the price rise and decline based on month and year. Also, because this graphic is interactive, if you hover over the line you can see all the data that was was given about this stock for a specific date. Also, some annotations are made to highlight specific times when Kroger was doing particularly well or not so well. 
 
 
 

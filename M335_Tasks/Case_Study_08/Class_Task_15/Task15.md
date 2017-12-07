@@ -34,7 +34,8 @@ me %>%
   geom_line() +
   facet_wrap( ~ symbol ) +
   theme_bw() +
-  theme( axis.text.x = element_text(angle = 45, hjust = 1) )
+  theme( axis.text.x = element_text(angle = 45, hjust = 1) ) +
+  labs(title = "My Stocks Price Preformace")
 ```
 
 ![](Task15_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
@@ -45,7 +46,8 @@ friend %>%
   geom_line() +
   facet_wrap( ~ symbol ) +
   theme_bw() +
-  theme( axis.text.x = element_text(angle = 45, hjust = 1) )
+  theme( axis.text.x = element_text(angle = 45, hjust = 1) ) +
+  labs(title = "My Friends Stocks Price Performance")
 ```
 
 ![](Task15_files/figure-html/unnamed-chunk-1-2.png)<!-- -->
@@ -59,13 +61,9 @@ prices %>%
   theme_bw()
 ```
 
-```
-## Warning: Continuous x aesthetic -- did you forget aes(group=...)?
-```
-
 ![](Task15_files/figure-html/unnamed-chunk-1-3.png)<!-- -->
 
-
+Looking at the different stocks it looks like my friend has the great price perforce in their Amazon stocks, but their other two stocks are not as good as Amazon. Comparatively my stocks are all doing fairly well and they appear to overall be better than my friends stocks. We can see from the boxplot which is used to visualize all of these stocks together, that Amazon is the best stock overall. The boxplot also helps us to see the distribution of the data. 
 
 
 
