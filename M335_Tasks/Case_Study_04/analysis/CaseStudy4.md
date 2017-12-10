@@ -50,7 +50,25 @@ alldata.rds %>%
 
 ![](CaseStudy4_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
+```r
+alldata.rds %>% ggplot(aes(x=height_in)) + 
+  geom_histogram(color = "white", bins = 45) + 
+  facet_wrap(~study, scales = "free_y", ncol = 1) + 
+  theme_bw() + labs(x = "Adult Male Heights", y = "Observations")
+```
 
+![](CaseStudy4_files/figure-html/unnamed-chunk-3-2.png)<!-- -->
+
+```r
+#ggsave("Case_Study_04_plot.png", height = 11, width = 6)
+
+#alldata.rds %>% 
+  #group_by(study) %>% 
+  #summarise(below65 = round(sum(height_in < 65)/n(), 3)) %>%
+  #kable()
+```
+
+Based on these graphics we can see the overall height distribution of males based on decades. It is interesting to note that in 1850 there was a dramatic decline in overall heights, which might be from the potato famine that happened around that time. Then from the next two plots we can see the distribution of this data based on century and then based on the different studies. 
 
 
 

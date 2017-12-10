@@ -66,11 +66,11 @@ greenLeafIcon <- makeIcon(
 leaflet(data = states) %>% 
   addTiles() %>%
   addPolygons(fillColor = topo.colors(10, alpha = NULL), 
-            stroke = FALSE) %>%
-  addMarkers(data = permitdata, icon = greenLeafIcon)
+            stroke = FALSE) #%>%
+  #addMarkers(data = permitdata, icon = greenLeafIcon)
 ```
 
-```{r}
+```{r, eval = F}
 leaflet(data = permitdata) %>% 
   addTiles() %>%
   addPolygons(fillColor = topo.colors(10, alpha = NULL), 

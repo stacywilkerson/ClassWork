@@ -50,8 +50,6 @@ dygraph(stocks, main = "Stock Adjusted Based on Year", ylab = "Adjusted") %>%
      dyOptions(colors = brewer.pal(10, "Paired")[c(2, 5, 6, 8, 7, 4, 1, 10, 3, 9, 12)])
 ```
 
-
-
 ```{r message=FALSE, warning=FALSE}
 adjusted <- stockprices %>%
   select(date, symbol, adjusted) %>%
@@ -74,7 +72,7 @@ dygraph(adjusted, main = "Adjusted", group = "stock") %>%
   dyRangeSelector(dateWindow = dateWindow)
 ```
 
-
+This graphics above looks at all of the stocks that our friend told us about. This is an interactive graphic that makes it easy to see how well or poorly these stocks were doing in the past years.
 
 ```{r}
 stockprices %>%
@@ -87,5 +85,5 @@ stockprices %>%
     theme_tq()
 ```
 
-
+This candle stick graphic takes a deeper look into these stocks showing the increase and decline of these stocks over time. For analyzing stocks the candle stick graphic is a good one to use to show us what and when a stock is changing and by how how much. 
 

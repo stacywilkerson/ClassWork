@@ -61,29 +61,34 @@ fooddata <- joindata %>%
       !(str_detect(spt, paste(c( quick_service_names, full_service_names), collapse = "|"))) & (SqFt < 4000) ~ "Quick Service Restaurants", TRUE  ~ "Unknown"))
 ```
 
+###Questions
 
+1. How did full-service restaurant construction compare to quick service restaurant construction across county and years?
 
-```{r, eval=FALSE}
+2. How did restaurant construction fare compare to the other commercial construction in Idaho?
+
+3. Which county in Idaho spent the most on fast food construction each year?
+
+4. In that county how did other commercial construction compare?
+
+###Graphics
+
+```{r}
 fooddata %>% 
-  ggplot(aes(x = Type, y = SqFt, fill = Year)) + 
-  geom_point() 
+  ggplot(aes(x = build_type, fill = Year)) + 
+  geom_bar() +
+  labs(x = "Buliding Type", y = "Number of Bulidings",title = "Number of Buliding Construsted") +
+  theme_bw()
 ```
 
-```{r, eval=FALSE}
+```{r}
 fooddata %>% 
   group_by(build_type, County.y, Year) %>% 
-  summarize(value = sum(Value1000), pop = min(Pop100)) %>%
-  complete(build_type, nesting(County.y, Year)) %>%
-  ggplot(aes(x = County.y, y = value, fill = Year)) + 
-  geom_bar(stat = "identity", position = "dodge") + 
-  facet_wrap(~build_type, scales = "free_y") + theme_bw()
+  ggplot(aes(x = County.y, fill = Year)) + 
+  geom_bar() + 
+  facet_wrap(~build_type) + 
+  theme_bw() +
+   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-
-
-
-
-
-
-
-
+Based on the above graphic it looks like Quick service restaurants did better then full service restaurants. In 2008 and 2009 There was a significant amount of more restaurants constructed than commercial construction. Ada, ID probably spent the most money on on fast food restaurant construction. Ada, ID also built more and probably spent more on construction of full service restaurants and on commercial construction.   

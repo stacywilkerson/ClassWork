@@ -48,7 +48,7 @@ IBCmonth <- IBC %>%
   group_by(Month, Name) %>%
   mutate(Gross = sum(Amount))
 ggplot() +
-  geom_point(data = IBCmonth, mapping = aes(x = Month, y = Gross)) +
+  geom_point(data = IBCmonth, mapping = aes(x = Month, y = Gross), col = "blue") +
   facet_grid(.~Name) + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -72,7 +72,7 @@ IBCweek <- IBC %>%
   group_by(Weekday, Name) %>%
   mutate(Gross = sum(Amount))
 ggplot() +
-  geom_point(data = IBCweek, mapping = aes(x = Weekday, y = Gross)) +
+  geom_point(data = IBCweek, mapping = aes(x = Weekday, y = Gross), col = "blue") +
   facet_grid(.~Name) + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 55, hjust = 1)) +
@@ -87,7 +87,7 @@ IBCday <- IBC %>%
   group_by(Day, Name) %>%
   mutate(Gross = sum(Amount))
 ggplot() +
-  geom_point(data = IBCday, mapping = aes(x = Day, y = Gross)) +
+  geom_point(data = IBCday, mapping = aes(x = Day, y = Gross), col = "blue") +
   facet_grid(.~Name) + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 0, hjust = 1)) +
@@ -103,7 +103,7 @@ IBChour <- IBC %>%
   group_by(Hour, Name, Weekday) %>%
   mutate(Gross = sum(Amount)) 
 ggplot() +
-  geom_point(data = IBChour, mapping = aes(x = Hour, y = Gross)) +
+  geom_point(data = IBChour, mapping = aes(x = Hour, y = Gross), col = "blue") +
   facet_grid(Name~Weekday) + 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = 0, hjust = 1)) +
@@ -113,4 +113,4 @@ pander(favstats(Gross~Name, data = IBChour)[1:9])
 
 ##Recommendation
 
-The best recomendation to give an invest ment loan to would be Hotdiggity or LeBelle.  
+The best recomendation to give an investment loan to would be Hotdiggity or LeBelle. Also the best hours of operation would be around lunch time so anywhere around 11am-3pm.    
