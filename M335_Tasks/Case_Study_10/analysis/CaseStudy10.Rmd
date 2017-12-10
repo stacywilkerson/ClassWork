@@ -74,7 +74,7 @@ MOsinglefam %>%
   filter(year >= 2000) %>%
   ggplot() +
     geom_sf(aes(fill = value)) +
-    scale_fill_viridis("value") +
+    scale_fill_continuous("value") +
     theme_bw() +
     facet_wrap(~year) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -82,4 +82,4 @@ MOsinglefam %>%
 ```
 
 
-
+From the overall graphic at the beginning if we zoom in on Missouri (MO) we can kind of see that no really change has happened in number (value) of single family permits. Though in the second graphic when we focus just on Missouri we can see that through the years the number of permits has decreases. And this is really prevalent because we can see this decrease from the year 2006 and 2007 to 2008.  
