@@ -34,7 +34,7 @@ Dart.rds %>%
   ggplot(aes(x = variable, y = value)) +
      geom_boxplot() +
      geom_jitter() +
-     theme_bw() +
+     theme_bw() + 
      ggsave(file.path("Task7plot.png"), width = 15)
 
 

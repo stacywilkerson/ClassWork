@@ -41,7 +41,7 @@ diamonds %>%
 
 ![](Task18_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
-The first graphic is accurate, but it is hard to read. The second graphic shows us the price of diamonds based on carat, cut, and color. The line just shows the avaerage price and the error based on carat and cut. Based on the second graphic it looks like the worst color (D) is cheaper no matter the cut. The price also increases the clager the carat.  
+The first graphic is accurate, but it is hard to read. The second graphic shows us the price of diamonds based on carat, cut, and color. The line just shows the average price and the error based on carat and cut. Based on the second graphic it looks like the worst color (D) is cheaper no matter the cut. The price also increases the larger the carat.  
 
 
 
