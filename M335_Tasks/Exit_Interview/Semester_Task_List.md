@@ -178,11 +178,11 @@ The deliverables for your [semester project](project.html) are assigned in [case
 #### [Case Study 13](weekly_projects/cs13_details.html) (For Exit Interview)
 
 * [x] Complete LinkedIn, GitHub, Slack profiles that have been connected to our BYU-I data science community
-* [ ] A cover letter stating the key concepts and techniques that you learned during our projects and your goals to continue learning in this area - include a grade request that represents your knowledge and task completion
+* [x] A cover letter stating the key concepts and techniques that you learned during our projects and your goals to continue learning in this area - include a grade request that represents your knowledge and task completion
 * [x] A resume that includes the skills you have learned during our projects
-* [ ] A semester task form that records your completed tasks during the semester
-* [ ] Semester project submission on GitHub
-* [ ] Submit this material electronically and in person during our exit interview
+* [x] A semester task form that records your completed tasks during the semester
+* [x] Semester project submission on GitHub
+* [x] Submit this material electronically and in person during our exit interview
 
 ## Daily Class Tasks
 
