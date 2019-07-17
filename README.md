@@ -1,2 +1,2 @@
 # Wilkerson_S
-My name is Stacy Wilkerson and I am a math major. I love math and am dedicated to whatever I do.
+My name is Stacy Wilkerson, I have a degree in Mathematical Sciences with an emphasis in Applied Statistics. I have a great love and respect for math and all that it can do. Especially using math when mixed with data. There are so many questions out in the world and so much data that one might not know where to start. To first find what to ask then gather and interpret the data to answer that question.  
